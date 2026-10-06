@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador de Planificación de Procesos</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Simulador de Planificación de Procesos</h1>
+  <p>Simula algoritmos de planificación y visualiza su ejecución mediante diagramas de Gantt.</p>
+</header>
+<main>
+  <section class="card no-print">
+    <h2>Algoritmo</h2>
+    <div class="row">
+      <select id="alg">
+        <option value="fcfs">FCFS / FIFO</option>
+        <option value="sjf">SJF (no preemptivo)</option>
+        <option value="rr">Round Robin</option>
+        <option value="mlq">Multilevel Queue</option>
+        <option value="mlfq">Multilevel Feedback Queue</option>
+      </select>
+      <label id="qWrap" hidden>Quantum: <input id="quantum" type="number" min="1" step="1" value="2"></label>
+    </div>
+    <p id="policy" class="note"></p>
+  </section>
+
+  <section class="card no-print">
+    <h2>Procesos</h2>
+    <div class="table-wrap">
+      <table id="inTable">
+        <thead><tr><th>Proceso</th><th>Tiempo de llegada</th><th>t (ejecución)</th><th class="qc">Cola</th><th></th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="row buttons">
+      <button id="add">Agregar proceso</button>
+      <button id="delLast" class="sec">Eliminar proceso</button>
+      <button id="clear" class="sec">Limpiar procesos</button>
+      <button id="run" class="primary">Ejecutar simulación</button>
+    </div>
+    <div class="row buttons">
+      <span>Ejemplos:</span>
+      <button class="sec ex" data-ex="1">1 · FCFS</button>
+      <button class="sec ex" data-ex="2">2 · SJF</button>
+      <button class="sec ex" data-ex="3">3 · Round Robin</button>
+      <button class="sec ex" data-ex="4">4 · Colas múltiples</button>
+    </div>
+    <div id="error" class="error" role="alert" hidden></div>
+  </section>
+
+  <div id="results" hidden>
+    <section class="card" id="printArea">
+      <h2>Resultados <small id="algName"></small></h2>
+      <div class="table-wrap"><table id="outTable"></table></div>
+
+      <h2>Diagrama de Gantt</h2>
+      <div id="gantt"></div>
+
+      <h2>Estadísticas</h2>
+      <div id="stats" class="stats"></div>
+    </section>
+    <section class="card">
+      <h2>Proceso de selección</h2>
+      <ol id="log" class="log"></ol>
+    </section>
+    <div class="row buttons no-print">
+      <button id="print">Imprimir resultados</button>
+      <button id="download" class="sec">Descargar resultados</button>
+    </div>
+  </div>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
